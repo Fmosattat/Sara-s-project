@@ -1,0 +1,7 @@
+{
+  "name": "Assessment Prototype Builder",
+  "id": "assessment-prototype-builder-local",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"]
+}
