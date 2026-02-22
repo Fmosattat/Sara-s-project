@@ -1,0 +1,460 @@
+{
+  "meta": {
+    "project": "Performance Assessment Prototype",
+    "style": "Enterprise HR SaaS",
+    "grid": "8px",
+    "fontFamily": "Inter",
+    "tokenSource": "figma/tokens.json",
+    "contentSource": [
+      "docs/01_problem_and_scope.md",
+      "docs/02_user_flow.md",
+      "docs/03_screens.md",
+      "docs/05_data_model_and_logic.md",
+      "docs/06_copywriting_en.md",
+      "figma/sample_data.json"
+    ]
+  },
+  "tokensApplied": {
+    "colors": {
+      "bg.default": "#FFFFFF",
+      "bg.subtle": "#F7F8FA",
+      "text.primary": "#111827",
+      "text.secondary": "#6B7280",
+      "border.default": "#E5E7EB",
+      "semantic.good": "#16A34A",
+      "semantic.needsImprovement": "#F59E0B",
+      "semantic.clearGap": "#DC2626",
+      "semantic.info": "#2563EB"
+    },
+    "spacing": {
+      "xs": 4,
+      "sm": 8,
+      "md": 16,
+      "lg": 24,
+      "xl": 32
+    },
+    "radius": {
+      "sm": 8,
+      "md": 12,
+      "lg": 16
+    },
+    "typography": {
+      "title": 28,
+      "section": 20,
+      "body": 16,
+      "caption": 12
+    }
+  },
+  "pages": [
+    {
+      "name": "Design System",
+      "layout": {
+        "type": "auto-layout-vertical",
+        "width": 1440,
+        "padding": 32,
+        "gap": 24
+      },
+      "sections": [
+        {
+          "name": "Typography",
+          "styles": [
+            { "name": "Title", "size": 28, "weight": 700, "lineHeight": 36 },
+            { "name": "Section", "size": 20, "weight": 600, "lineHeight": 28 },
+            { "name": "Body", "size": 16, "weight": 400, "lineHeight": 24 },
+            { "name": "Caption", "size": 12, "weight": 500, "lineHeight": 16 }
+          ]
+        },
+        {
+          "name": "Button",
+          "componentSet": "Button/State",
+          "variants": [
+            { "type": "Primary", "state": "Default", "label": "Continue" },
+            { "type": "Primary", "state": "Loading", "label": "Submitting..." },
+            { "type": "Primary", "state": "Disabled", "label": "Continue" },
+            { "type": "Secondary", "state": "Default", "label": "Save as Draft" }
+          ]
+        },
+        {
+          "name": "Card",
+          "componentSet": "Card/State",
+          "variants": [
+            { "state": "Default", "title": "Education", "subtitle": "Sector" },
+            { "state": "Selectable", "title": "Executive", "subtitle": "Job Level" },
+            { "state": "Selected", "title": "Supervisory", "subtitle": "Job Level" }
+          ]
+        },
+        {
+          "name": "Rating Scale",
+          "component": "RatingScale/1-5",
+          "labels": ["Very Low", "Low", "Medium", "Good", "Excellent"],
+          "helper": "Rate each statement from 1 (Very Low) to 5 (Excellent)."
+        },
+        {
+          "name": "Badge",
+          "componentSet": "Badge/Type",
+          "variants": [
+            { "type": "Status", "label": "Draft" },
+            { "type": "Status", "label": "Sent" },
+            { "type": "Status", "label": "Approved" },
+            { "type": "Classification", "label": "Good" },
+            { "type": "Classification", "label": "Needs Improvement" },
+            { "type": "Classification", "label": "Clear Gap" },
+            { "type": "Gap", "label": "Gap" }
+          ]
+        },
+        {
+          "name": "Progress Bar",
+          "component": "ProgressBar",
+          "samples": [
+            { "value": 40 },
+            { "value": 67 },
+            { "value": 80 }
+          ]
+        },
+        {
+          "name": "Table",
+          "component": "ResultsTable",
+          "columns": ["Element", "Score %", "Classification", "Gap?"]
+        },
+        {
+          "name": "Modal",
+          "component": "ConfirmationModal",
+          "title": "Changing sector or level will reset your assessment. Continue?",
+          "actions": ["Cancel", "Continue"]
+        },
+        {
+          "name": "Stepper",
+          "component": "FlowStepper",
+          "steps": ["Sector", "Level", "Assessment", "Results", "Recommendations", "Approval", "Report"]
+        },
+        {
+          "name": "Banner",
+          "component": "InlineBanner",
+          "states": [
+            "Saved as Draft",
+            "Changes requested",
+            "Approved successfully"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Prototype",
+      "layout": {
+        "type": "horizontal-flow",
+        "frameSize": { "width": 1440, "height": 1024 },
+        "frameGap": 80
+      },
+      "frames": [
+        {
+          "name": "01 Sector Selection",
+          "header": "Select Sector",
+          "content": {
+            "sectorCards": [
+              "Education",
+              "Healthcare",
+              "Projects & Construction",
+              "Administrative Services"
+            ],
+            "primaryAction": { "label": "Continue", "enabled": false }
+          },
+          "interactions": [
+            "Select any card -> card becomes selected",
+            "When selected -> Continue enabled",
+            "Continue -> 02 Job Level Selection"
+          ]
+        },
+        {
+          "name": "02 Job Level Selection",
+          "header": "Select Job Level",
+          "content": {
+            "levelCards": [
+              {
+                "level": "Executive",
+                "elements": [
+                  "Task completion",
+                  "Work quality",
+                  "Time commitment",
+                  "Procedure compliance"
+                ]
+              },
+              {
+                "level": "Supervisory",
+                "elements": [
+                  "Task distribution",
+                  "Execution follow-up",
+                  "Solving daily problems",
+                  "Compliance with standards"
+                ]
+              },
+              {
+                "level": "Managerial",
+                "elements": [
+                  "Work organization",
+                  "Report follow-up",
+                  "Coordination between departments",
+                  "Compliance with policies"
+                ]
+              },
+              {
+                "level": "Leadership",
+                "elements": [
+                  "Setting objectives",
+                  "Team guidance",
+                  "Monitoring overall results",
+                  "Addressing challenges"
+                ]
+              }
+            ],
+            "primaryAction": { "label": "Continue", "enabled": false }
+          },
+          "interactions": [
+            "Select level -> Continue enabled",
+            "Continue -> 03 Smart Assessment Form"
+          ]
+        },
+        {
+          "name": "03 Smart Assessment Form",
+          "header": "Smart Assessment Form",
+          "content": {
+            "stepper": ["Sector", "Level", "Assessment"],
+            "summary": {
+              "sector": "Projects & Construction",
+              "jobLevel": "Supervisory",
+              "employee": "Sample Employee (EMP-0142)"
+            },
+            "helper": "Rate each statement from 1 (Very Low) to 5 (Excellent).",
+            "progress": "X/12 answered",
+            "elements": [
+              {
+                "title": "Task distribution",
+                "questions": [
+                  "Assigns tasks clearly with defined ownership.",
+                  "Balances workload fairly across the team.",
+                  "Matches tasks to team capabilities."
+                ]
+              },
+              {
+                "title": "Execution follow-up",
+                "questions": [
+                  "Tracks progress consistently.",
+                  "Provides timely feedback during execution.",
+                  "Escalates risks early."
+                ]
+              },
+              {
+                "title": "Solving daily problems",
+                "questions": [
+                  "Identifies root causes quickly.",
+                  "Resolves blockers with minimal delay.",
+                  "Maintains service continuity during issues."
+                ]
+              },
+              {
+                "title": "Compliance with standards",
+                "questions": [
+                  "Follows safety and quality standards.",
+                  "Ensures team compliance in daily work.",
+                  "Documents deviations and corrective actions."
+                ]
+              }
+            ],
+            "actions": ["Save as Draft", "Submit Assessment"],
+            "validation": ["Required", "Please complete all questions before submitting."]
+          },
+          "interactions": [
+            "Submit Assessment (all answered) -> 04 Results & Gap Analysis",
+            "Submit Assessment (incomplete) -> show Required and scroll to first unanswered"
+          ]
+        },
+        {
+          "name": "04 Results & Gap Analysis",
+          "header": "Results",
+          "content": {
+            "overall": {
+              "percentage": 51.7,
+              "classification": "Clear Gap"
+            },
+            "elementCards": [
+              {
+                "element": "Task distribution",
+                "percentage": 53.3,
+                "classification": "Clear Gap",
+                "isGap": true
+              },
+              {
+                "element": "Execution follow-up",
+                "percentage": 46.7,
+                "classification": "Clear Gap",
+                "isGap": true
+              },
+              {
+                "element": "Solving daily problems",
+                "percentage": 66.7,
+                "classification": "Needs Improvement",
+                "isGap": false
+              },
+              {
+                "element": "Compliance with standards",
+                "percentage": 40,
+                "classification": "Clear Gap",
+                "isGap": true
+              }
+            ],
+            "actions": ["View Recommendations", "Generate Report", "Back"]
+          },
+          "interactions": [
+            "View Recommendations -> 05 Recommendation Dashboard",
+            "Generate Report -> 07 Report (Draft)",
+            "Back -> 03 Smart Assessment Form"
+          ]
+        },
+        {
+          "name": "05 Recommendation Dashboard",
+          "header": "Recommendations",
+          "content": {
+            "sections": [
+              {
+                "element": "Task distribution",
+                "status": "Gap detected",
+                "recommendations": [
+                  {
+                    "title": "Task Ownership Matrix Workshop",
+                    "rationale": "Improves role clarity and reduces duplicated effort.",
+                    "action": "Run a 90-minute workshop to map owners per recurring task.",
+                    "timeframe": "2 weeks"
+                  },
+                  {
+                    "title": "Weekly Load-Balance Review",
+                    "rationale": "Helps maintain fair distribution across team members.",
+                    "action": "Review assignment board every Monday and rebalance by capacity.",
+                    "timeframe": "4 weeks"
+                  }
+                ]
+              },
+              {
+                "element": "Execution follow-up",
+                "status": "Gap detected",
+                "recommendations": [
+                  {
+                    "title": "Daily Progress Huddle",
+                    "rationale": "Creates short feedback loops and early risk visibility.",
+                    "action": "Implement a 15-minute stand-up with blockers and next steps.",
+                    "timeframe": "2 weeks"
+                  },
+                  {
+                    "title": "Escalation Playbook",
+                    "rationale": "Standardizes when and how risks are escalated.",
+                    "action": "Publish severity-based escalation rules for supervisors.",
+                    "timeframe": "3 weeks"
+                  }
+                ]
+              },
+              {
+                "element": "Compliance with standards",
+                "status": "Gap detected",
+                "recommendations": [
+                  {
+                    "title": "Compliance Checklist Rollout",
+                    "rationale": "Reduces missed safety and quality controls.",
+                    "action": "Introduce shift-level checklist with supervisor sign-off.",
+                    "timeframe": "2 weeks"
+                  },
+                  {
+                    "title": "Corrective Action Logging",
+                    "rationale": "Improves traceability of deviations and fixes.",
+                    "action": "Track deviations in a shared log and review weekly.",
+                    "timeframe": "4 weeks"
+                  }
+                ]
+              },
+              {
+                "element": "Solving daily problems",
+                "status": "No recommendation needed",
+                "collapsed": true
+              }
+            ],
+            "actions": ["Send for Approval", "Back"]
+          },
+          "interactions": [
+            "Send for Approval -> 06 Approval Workflow",
+            "If request changes path -> show banner 'Changes requested' with notes"
+          ]
+        },
+        {
+          "name": "06 Approval Workflow",
+          "header": "Approval",
+          "content": {
+            "summaryPanel": {
+              "sector": "Projects & Construction",
+              "level": "Supervisory",
+              "employee": "Sample Employee",
+              "overallScore": "51.7%",
+              "gapCount": 3
+            },
+            "notesFieldLabel": "Approval Notes",
+            "timeline": ["Draft", "Sent", "Approved"],
+            "actions": ["Approve", "Request Changes"]
+          },
+          "interactions": [
+            "Approve -> 07 Report (status Approved)",
+            "Request Changes -> 05 Recommendation Dashboard with changes banner"
+          ]
+        },
+        {
+          "name": "07 Report",
+          "header": "Report",
+          "content": {
+            "reportHeader": {
+              "reportId": "RPT-2025-0142",
+              "date": "2025-02-14",
+              "status": "Approved"
+            },
+            "sections": [
+              "Sector",
+              "Job Level",
+              "Evaluation Results",
+              "Identified Gaps",
+              "Suggested Recommendations"
+            ],
+            "evaluationTableRows": [
+              ["Task distribution", "53.3%", "Clear Gap", "Yes"],
+              ["Execution follow-up", "46.7%", "Clear Gap", "Yes"],
+              ["Solving daily problems", "66.7%", "Needs Improvement", "No"],
+              ["Compliance with standards", "40.0%", "Clear Gap", "Yes"]
+            ],
+            "actions": ["Export PDF", "Save Draft", "Mark as Sent", "Back to Dashboard"]
+          },
+          "interactions": [
+            "Mark as Sent -> status chip Sent",
+            "Arrive from Approve path -> status chip Approved"
+          ]
+        }
+      ]
+    }
+  ],
+  "logic": {
+    "formulae": {
+      "elementAverage": "mean(3 question scores)",
+      "elementPercentage": "(elementAverage / 5) * 100",
+      "overallAverage": "mean(all 12 answers)",
+      "overallPercentage": "(overallAverage / 5) * 100"
+    },
+    "classificationThresholds": {
+      "Good": ">=80",
+      "Needs Improvement": "60-79",
+      "Clear Gap": "<60"
+    },
+    "gapRule": "elementPercentage < 60"
+  },
+  "prototypeConnections": [
+    { "from": "01 Sector Selection", "trigger": "Continue", "to": "02 Job Level Selection" },
+    { "from": "02 Job Level Selection", "trigger": "Continue", "to": "03 Smart Assessment Form" },
+    { "from": "03 Smart Assessment Form", "trigger": "Submit Assessment", "to": "04 Results & Gap Analysis" },
+    { "from": "04 Results & Gap Analysis", "trigger": "View Recommendations", "to": "05 Recommendation Dashboard" },
+    { "from": "05 Recommendation Dashboard", "trigger": "Send for Approval", "to": "06 Approval Workflow" },
+    { "from": "06 Approval Workflow", "trigger": "Approve", "to": "07 Report" },
+    { "from": "06 Approval Workflow", "trigger": "Request Changes", "to": "05 Recommendation Dashboard" },
+    { "from": "04 Results & Gap Analysis", "trigger": "Generate Report", "to": "07 Report" }
+  ]
+}
