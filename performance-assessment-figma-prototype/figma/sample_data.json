@@ -1,0 +1,89 @@
+{
+  "employee": {
+    "id": "EMP-0142",
+    "name": "Sample Employee",
+    "department": "Operations",
+    "role": "Supervisory",
+    "sector": "Projects & Construction"
+  },
+  "assessment_example": {
+    "sector": "Projects & Construction",
+    "jobLevel": "Supervisory",
+    "elements": [
+      {
+        "name": "Task distribution",
+        "questions": [
+          {
+            "text": "Assigns tasks clearly with defined ownership.",
+            "score": 3
+          },
+          {
+            "text": "Balances workload fairly across the team.",
+            "score": 2
+          },
+          {
+            "text": "Matches tasks to team capabilities.",
+            "score": 3
+          }
+        ]
+      },
+      {
+        "name": "Execution follow-up",
+        "questions": [
+          {
+            "text": "Tracks progress consistently.",
+            "score": 2
+          },
+          {
+            "text": "Provides timely feedback during execution.",
+            "score": 2
+          },
+          {
+            "text": "Escalates risks early.",
+            "score": 3
+          }
+        ]
+      },
+      {
+        "name": "Solving daily problems",
+        "questions": [
+          {
+            "text": "Identifies root causes quickly.",
+            "score": 3
+          },
+          {
+            "text": "Resolves blockers with minimal delay.",
+            "score": 3
+          },
+          {
+            "text": "Maintains service continuity during issues.",
+            "score": 4
+          }
+        ]
+      },
+      {
+        "name": "Compliance with standards",
+        "questions": [
+          {
+            "text": "Follows safety and quality standards.",
+            "score": 2
+          },
+          {
+            "text": "Ensures team compliance in daily work.",
+            "score": 2
+          },
+          {
+            "text": "Documents deviations and corrective actions.",
+            "score": 2
+          }
+        ]
+      }
+    ],
+    "thresholds": {
+      "good": 80,
+      "needs_improvement": 60,
+      "clear_gap": 0,
+      "gap_element_below": 60
+    }
+  }
+}
